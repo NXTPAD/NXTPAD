@@ -266,11 +266,15 @@
         params: ['0x' + toHex(bytes), state.address]
       });
     } else if (state.chain === 'solana') {
+      // Let Phantom determine the connected Solana address. Passing the
+      // address back into signIn is optional in SIWS, and Phantom will reject
+      // the request if the supplied address differs from the account selected
+      // in the wallet (this is especially important in the mobile browser).
+      // We also keep the request minimal so Phantom builds the canonical
+      // SIWS message itself instead of receiving a hand-built payload.
       var signInput = {
         domain: location.host,
-        address: state.address,
         statement: 'Sign in to NXT PAD. This only proves you own this wallet. It is free and does not send a transaction.',
-        uri: location.origin,
         version: '1',
         chainId: 'devnet',
         nonce: NXT.randomHex(12),
