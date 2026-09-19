@@ -1,0 +1,31 @@
+name: Restore NXT PAD site
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract website
+        run: |
+          rm -rf /tmp/nxt-pad
+          mkdir -p /tmp/nxt-pad
+          unzip -q nxt-pad.zip -d /tmp/nxt-pad
+          cp -a /tmp/nxt-pad/nxt-pad/. ./
+      - name: Commit restored site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Restore complete NXT PAD site from source archive"
+            git push
+          fi
