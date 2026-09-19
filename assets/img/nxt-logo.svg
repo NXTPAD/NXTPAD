@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+<title>NXT Cloud logo</title><desc>Electric blue glass cloud with N symbol and orbital rings</desc>
+<defs>
+<linearGradient id="cloud" x1="120" y1="160" x2="680" y2="680" gradientUnits="userSpaceOnUse"><stop stop-color="#e9fbff"/><stop offset=".22" stop-color="#24cfff"/><stop offset=".58" stop-color="#0968ff"/><stop offset="1" stop-color="#0039c7"/></linearGradient>
+<linearGradient id="n" x1="290" y1="280" x2="520" y2="570" gradientUnits="userSpaceOnUse"><stop stop-color="#32eaff"/><stop offset=".42" stop-color="#147dff"/><stop offset="1" stop-color="#003ad7"/></linearGradient>
+<filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<g opacity=".8" fill="none" stroke="#159dff" stroke-width="4"><ellipse cx="400" cy="400" rx="365" ry="130" transform="rotate(-19 400 400)"/><ellipse cx="400" cy="400" rx="340" ry="110" transform="rotate(25 400 400)"/></g>
+<g filter="url(#glow)" fill="none" stroke="url(#cloud)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"><path d="M151 574c-2-93 69-168 160-168 18-105 108-184 218-184 116 0 211 89 220 202 45 22 76 69 76 124 0 77-62 139-139 139H183c-18 0-32-14-32-31Z"/></g>
+<path d="M151 574c-2-93 69-168 160-168 18-105 108-184 218-184 116 0 211 89 220 202 45 22 76 69 76 124 0 77-62 139-139 139H183c-18 0-32-14-32-31Z" fill="#061a49" fill-opacity=".36" stroke="#baf5ff" stroke-opacity=".7" stroke-width="3"/>
+<path d="M292 302h70l151 151v-151h61v224c0 17-21 25-33 13L391 388v138h-61V302h-38Z" fill="url(#n)" stroke="#8ff5ff" stroke-width="4" stroke-linejoin="round" filter="url(#glow)"/>
+<g filter="url(#soft)" fill="#79eaff"><circle cx="125" cy="270" r="7"/><circle cx="664" cy="170" r="6"/><circle cx="696" cy="625" r="7"/><circle cx="205" cy="680" r="5"/></g>
+</svg>
