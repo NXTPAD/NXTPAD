@@ -243,10 +243,29 @@
         params: ['0x' + toHex(bytes), state.address]
       });
     } else if (state.chain === 'solana') {
-      var sf = active.wallet.features['solana:signMessage'];
-      if (!sf) throw new Error(state.walletName + ' cannot sign messages on Solana.');
-      var out = await sf.signMessage({ account: active.account, message: bytes });
-      signature = bytesToBase64(out[0].signature);
+      // Phantom and other modern Solana wallets support SIWS through the
+      // Wallet Standard. Use solana:signIn when available so the wallet
+      // constructs and validates the standardized message itself.
+      var sif = active.wallet.features['solana:signIn'];
+      if (sif) {
+        var siws = await sif.signIn({
+          domain: location.host,
+          address: state.address,
+          statement: 'Sign in to NXT PAD. This only proves you own this wallet. It is free and does not send a transaction.',
+          uri: location.origin,
+          version: '1',
+          chainId: 'devnet',
+          nonce: NXT.randomHex(8),
+          issuedAt: new Date().toISOString()
+        });
+        if (!siws || !siws.length || !siws[0].signature) throw new Error('The wallet did not return a Solana sign-in signature.');
+        signature = bytesToBase64(siws[0].signature);
+      } else {
+        var sf = active.wallet.features['solana:signMessage'];
+        if (!sf) throw new Error(state.walletName + ' cannot sign messages on Solana.');
+        var out = await sf.signMessage({ account: active.account, message: bytes });
+        signature = bytesToBase64(out[0].signature);
+      }
     } else {
       var uf = active.wallet.features['sui:signPersonalMessage'];
       if (!uf) throw new Error(state.walletName + ' cannot sign messages on Sui.');
