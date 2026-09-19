@@ -16,243 +16,82 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-
   <div class="testbar" role="note"><i aria-hidden="true"></i>Test mode: Ethereum Sepolia, Solana Devnet, and Sui Testnet. Test coins have no value.</div>
-
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="NXT PAD home">
-        <img src="assets/img/logo.png" alt="" width="46" height="46">
-        <span>NXT PAD</span>
-      </a>
+      <a class="brand" href="index.html" aria-label="NXT PAD home"><img src="assets/img/logo.png" alt="" width="46" height="46"><span>NXT PAD</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
       <nav class="nav" id="nav" aria-label="Main">
-        <a href="index.html">Home</a>
-        <a href="index.html#features">Features</a>
-        <a href="index.html#networks">Networks</a>
-        <a href="index.html#how">How it works</a>
-        <a href="tokens.html">Launches</a>
+        <a href="index.html">Home</a><a href="index.html#features">Features</a><a href="index.html#networks">Networks</a><a href="index.html#how">How it works</a><a href="tokens.html">Launches</a>
         <button class="btn btn-ghost btn-sm" type="button" data-wallet-btn>Connect wallet</button>
         <a class="btn btn-primary btn-sm" href="launch.html" aria-current="page">Launch a token</a>
       </nav>
     </div>
   </header>
-
   <main id="main">
-    <section class="doc-hero">
-      <div class="wrap">
-        <h1>Launch a token</h1>
-        <p>Pick a network, set up your token, and choose your launch protections. One flat $1 fee, charged once when the token is created.</p>
-        <div class="doc-meta">
-          <span class="pill pill--dev">Test networks only</span>
-          <span>Sign in with your wallet, no account needed</span>
-        </div>
-      </div>
-    </section>
-
+    <section class="doc-hero"><div class="wrap"><h1>Launch a token</h1><p>Pick a network, set up your token, and choose your launch protections. One flat $1 fee, charged once when the token is created.</p><div class="doc-meta"><span class="pill pill--dev">Test networks only</span><span>Sign in with your wallet, no account needed</span></div></div></section>
     <div class="wrap launch-layout">
       <form id="launch-form" class="launch-form" novalidate autocomplete="off">
-
-        <!-- 1. Network -->
         <section class="panel">
-          <div class="panel-head">
-            <div>
-              <h2><span class="num">1</span>Network</h2>
-              <p>Your wallet decides where the token lives. Switching network changes which wallet you sign in with.</p>
-            </div>
+          <div class="panel-head"><div><h2><span class="num">1</span>Network</h2><p>Your wallet decides where the token lives. Switching network changes which wallet you sign in with.</p></div></div>
+          <div class="seg seg--lg" id="chain-seg" role="group" aria-label="Network"></div><p class="hint" id="chain-hint"></p>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><div><h2><span class="num">2</span>Token details</h2><p>The basics people will see.</p></div></div>
+          <div class="grid-2">
+            <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" maxlength="32" placeholder="Nimbus Coin" required><p class="err" data-err="name"></p></div>
+            <div class="field"><label for="f-symbol">Symbol</label><input id="f-symbol" name="symbol" type="text" maxlength="10" placeholder="NMBS" style="text-transform:uppercase" required><p class="err" data-err="symbol"></p></div>
           </div>
-          <div class="seg seg--lg" id="chain-seg" role="group" aria-label="Network"></div>
-          <p class="hint" id="chain-hint"></p>
+          <div class="field"><label for="f-supply">Total supply</label><input id="f-supply" name="supply" type="text" inputmode="numeric" value="1,000,000,000" required><p class="hint" id="supply-hint"></p><p class="err" data-err="supply"></p></div>
+          <div class="field"><label for="f-desc">Description <span class="opt">optional</span></label><textarea id="f-desc" name="desc" rows="3" maxlength="280" placeholder="What is this token about?"></textarea><p class="hint"><span id="desc-count">0</span> / 280</p></div>
+          <div class="field"><label for="f-logo">Logo URL <span class="opt">optional</span></label><input id="f-logo" name="logo" type="url" placeholder="https://example.com/logo.png"><p class="err" data-err="logo"></p></div>
         </section>
 
-        <!-- 2. Token -->
+        <!-- 3. Social links -->
         <section class="panel">
           <div class="panel-head">
-            <div>
-              <h2><span class="num">2</span>Token details</h2>
-              <p>The basics people will see.</p>
-            </div>
+            <div><h2><span class="num">3</span>Social links</h2><p>Optional links people can use to find your project and community.</p></div>
           </div>
           <div class="grid-2">
-            <div class="field">
-              <label for="f-name">Name</label>
-              <input id="f-name" name="name" type="text" maxlength="32" placeholder="Nimbus Coin" required>
-              <p class="err" data-err="name"></p>
-            </div>
-            <div class="field">
-              <label for="f-symbol">Symbol</label>
-              <input id="f-symbol" name="symbol" type="text" maxlength="10" placeholder="NMBS" style="text-transform:uppercase" required>
-              <p class="err" data-err="symbol"></p>
-            </div>
-          </div>
-          <div class="field">
-            <label for="f-supply">Total supply</label>
-            <input id="f-supply" name="supply" type="text" inputmode="numeric" value="1,000,000,000" required>
-            <p class="hint" id="supply-hint"></p>
-            <p class="err" data-err="supply"></p>
-          </div>
-          <div class="field">
-            <label for="f-desc">Description <span class="opt">optional</span></label>
-            <textarea id="f-desc" name="desc" rows="3" maxlength="280" placeholder="What is this token about?"></textarea>
-            <p class="hint"><span id="desc-count">0</span> / 280</p>
-          </div>
-          <div class="field">
-            <label for="f-logo">Logo URL <span class="opt">optional</span></label>
-            <input id="f-logo" name="logo" type="url" placeholder="https://example.com/logo.png">
-            <p class="err" data-err="logo"></p>
+            <div class="field"><label for="f-website">Website <span class="opt">optional</span></label><input id="f-website" name="website" type="url" placeholder="https://yourproject.com"><p class="err" data-err="website"></p></div>
+            <div class="field"><label for="f-x">X / Twitter <span class="opt">optional</span></label><input id="f-x" name="x" type="url" placeholder="https://x.com/yourproject"><p class="err" data-err="x"></p></div>
+            <div class="field"><label for="f-telegram">Telegram <span class="opt">optional</span></label><input id="f-telegram" name="telegram" type="url" placeholder="https://t.me/yourproject"><p class="err" data-err="telegram"></p></div>
+            <div class="field"><label for="f-discord">Discord <span class="opt">optional</span></label><input id="f-discord" name="discord" type="url" placeholder="https://discord.gg/yourinvite"><p class="err" data-err="discord"></p></div>
           </div>
         </section>
 
-        <!-- 3. Anti-sniping -->
+        <!-- 4. Anti-sniping -->
         <section class="panel" id="panel-snipe">
-          <div class="panel-head">
-            <div>
-              <h2><span class="num">3</span>Anti-sniping</h2>
-              <p>Slow down bots in the first minutes so real people get a fair start.</p>
-            </div>
-            <label class="switch">
-              <input type="checkbox" id="sw-snipe" checked>
-              <span class="track" aria-hidden="true"></span>
-              <span class="sr">Enable anti-sniping</span>
-            </label>
-          </div>
-          <div class="panel-body" data-for="sw-snipe">
-            <div class="grid-3">
-              <div class="field">
-                <label for="f-snipe-window">Protection window</label>
-                <select id="f-snipe-window">
-                  <option value="5">5 minutes</option>
-                  <option value="10" selected>10 minutes</option>
-                  <option value="30">30 minutes</option>
-                  <option value="60">60 minutes</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="f-snipe-max">Max buy per wallet</label>
-                <select id="f-snipe-max">
-                  <option value="0.5">0.5% of supply</option>
-                  <option value="1" selected>1% of supply</option>
-                  <option value="2">2% of supply</option>
-                  <option value="3">3% of supply</option>
-                  <option value="5">5% of supply</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="f-snipe-decay">Decaying launch fee</label>
-                <select id="f-snipe-decay">
-                  <option value="0">Off</option>
-                  <option value="10">Starts at 10%</option>
-                  <option value="20" selected>Starts at 20%</option>
-                  <option value="30">Starts at 30%</option>
-                </select>
-              </div>
-            </div>
-            <p class="hint">During the window, no wallet can buy more than the cap. The launch fee, if on, falls to 0% by the end of the window, so buying at second one costs the most.</p>
-          </div>
+          <div class="panel-head"><div><h2><span class="num">4</span>Anti-sniping</h2><p>Slow down bots in the first minutes so real people get a fair start.</p></div><label class="switch"><input type="checkbox" id="sw-snipe" checked><span class="track" aria-hidden="true"></span><span class="sr">Enable anti-sniping</span></label></div>
+          <div class="panel-body" data-for="sw-snipe"><div class="grid-3">
+            <div class="field"><label for="f-snipe-window">Protection window</label><select id="f-snipe-window"><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select></div>
+            <div class="field"><label for="f-snipe-max">Max buy per wallet</label><select id="f-snipe-max"><option value="0.5">0.5% of supply</option><option value="1" selected>1% of supply</option><option value="2">2% of supply</option><option value="3">3% of supply</option><option value="5">5% of supply</option></select></div>
+            <div class="field"><label for="f-snipe-decay">Decaying launch fee</label><select id="f-snipe-decay"><option value="0">Off</option><option value="10">Starts at 10%</option><option value="20" selected>Starts at 20%</option><option value="30">Starts at 30%</option></select></div>
+          </div><p class="hint">During the window, no wallet can buy more than the cap. The launch fee, if on, falls to 0% by the end of the window, so buying at second one costs the most.</p></div>
         </section>
 
-        <!-- 4. Creator allocation -->
+        <!-- 5. Creator allocation -->
         <section class="panel" id="panel-creator">
-          <div class="panel-head">
-            <div>
-              <h2><span class="num">4</span>Creator allocation</h2>
-              <p>Reserve part of the supply for yourself, with an optional lock so the community can see you are staying.</p>
-            </div>
-            <label class="switch">
-              <input type="checkbox" id="sw-creator">
-              <span class="track" aria-hidden="true"></span>
-              <span class="sr">Enable creator allocation</span>
-            </label>
-          </div>
-          <div class="panel-body is-off" data-for="sw-creator">
-            <div class="field">
-              <label for="f-creator-pct">Your share: <output id="o-creator-pct">5%</output></label>
-              <input id="f-creator-pct" type="range" min="1" max="20" step="1" value="5">
-              <p class="hint" id="creator-amt"></p>
-            </div>
-            <div class="field">
-              <label for="f-creator-vest">Lock period</label>
-              <select id="f-creator-vest">
-                <option value="0">No lock</option>
-                <option value="30">30 days</option>
-                <option value="90" selected>90 days</option>
-                <option value="180">180 days</option>
-                <option value="365">365 days</option>
-              </select>
-            </div>
-          </div>
+          <div class="panel-head"><div><h2><span class="num">5</span>Creator allocation</h2><p>Reserve part of the supply for yourself, with an optional lock so the community can see you are staying.</p></div><label class="switch"><input type="checkbox" id="sw-creator"><span class="track" aria-hidden="true"></span><span class="sr">Enable creator allocation</span></label></div>
+          <div class="panel-body is-off" data-for="sw-creator"><div class="field"><label for="f-creator-pct">Your share: <output id="o-creator-pct">5%</output></label><input id="f-creator-pct" type="range" min="1" max="20" step="1" value="5"><p class="hint" id="creator-amt"></p></div><div class="field"><label for="f-creator-vest">Lock period</label><select id="f-creator-vest"><option value="0">No lock</option><option value="30">30 days</option><option value="90" selected>90 days</option><option value="180">180 days</option><option value="365">365 days</option></select></div></div>
         </section>
 
-        <!-- 5. Early buy-in -->
+        <!-- 6. Early buy-in -->
         <section class="panel" id="panel-early">
-          <div class="panel-head">
-            <div>
-              <h2><span class="num">5</span>Early buy-in</h2>
-              <p>Let a chosen list of wallets buy first, before public trading opens.</p>
-            </div>
-            <label class="switch">
-              <input type="checkbox" id="sw-early">
-              <span class="track" aria-hidden="true"></span>
-              <span class="sr">Enable early buy-in</span>
-            </label>
-          </div>
-          <div class="panel-body is-off" data-for="sw-early">
-            <div class="grid-2">
-              <div class="field">
-                <label for="f-early-pct">Reserved supply: <output id="o-early-pct">3%</output></label>
-                <input id="f-early-pct" type="range" min="1" max="10" step="1" value="3">
-                <p class="hint" id="early-amt"></p>
-              </div>
-              <div class="field">
-                <label for="f-early-window">Early window</label>
-                <select id="f-early-window">
-                  <option value="5">5 minutes</option>
-                  <option value="15" selected>15 minutes</option>
-                  <option value="30">30 minutes</option>
-                  <option value="60">60 minutes</option>
-                </select>
-                <p class="hint">Public trading opens after this window ends.</p>
-              </div>
-            </div>
-            <div class="field">
-              <label for="f-early-list">Allowed wallets</label>
-              <textarea id="f-early-list" rows="4" placeholder="One address per line"></textarea>
-              <p class="hint" id="early-hint"></p>
-              <p class="err" data-err="early"></p>
-            </div>
-          </div>
+          <div class="panel-head"><div><h2><span class="num">6</span>Early buy-in</h2><p>Let a chosen list of wallets buy first, before public trading opens.</p></div><label class="switch"><input type="checkbox" id="sw-early"><span class="track" aria-hidden="true"></span><span class="sr">Enable early buy-in</span></label></div>
+          <div class="panel-body is-off" data-for="sw-early"><div class="grid-2">
+            <div class="field"><label for="f-early-pct">Reserved supply: <output id="o-early-pct">3%</output></label><input id="f-early-pct" type="range" min="1" max="10" step="1" value="3"><p class="hint" id="early-amt"></p></div>
+            <div class="field"><label for="f-early-window">Early window</label><select id="f-early-window"><option value="5">5 minutes</option><option value="15" selected>15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select><p class="hint">Public trading opens after this window ends.</p></div>
+          </div><div class="field"><label for="f-early-list">Allowed wallets</label><textarea id="f-early-list" rows="4" placeholder="One address per line"></textarea><p class="hint" id="early-hint"></p><p class="err" data-err="early"></p></div></div>
         </section>
       </form>
 
-      <!-- Summary -->
       <aside class="summary" aria-label="Launch summary">
         <div class="panel panel--main">
-          <div class="sum-top">
-            <span class="sum-avatar" id="sum-avatar" aria-hidden="true">?</span>
-            <div>
-              <strong id="sum-name">Your token</strong>
-              <span id="sum-sub" class="sum-sub">SYMBOL &middot; Ethereum Sepolia</span>
-            </div>
-          </div>
-
-          <h3 class="sum-h">Supply split</h3>
-          <div class="dist" id="dist" role="img" aria-label="Supply split"></div>
-          <ul class="legend" id="legend"></ul>
-
-          <h3 class="sum-h">Protections</h3>
-          <ul class="sum-list" id="sum-features"></ul>
-
-          <div class="fee-row">
-            <div>
-              <span class="fee-label">Creation fee</span>
-              <span class="fee-note" id="fee-note">One time, per token</span>
-            </div>
-            <div class="fee-val">
-              <strong>$1.00</strong>
-              <span id="fee-native">&asymp; &hellip;</span>
-            </div>
-          </div>
-
+          <div class="sum-top"><span class="sum-avatar" id="sum-avatar" aria-hidden="true">?</span><div><strong id="sum-name">Your token</strong><span id="sum-sub" class="sum-sub">SYMBOL &middot; Ethereum Sepolia</span></div></div>
+          <h3 class="sum-h">Supply split</h3><div class="dist" id="dist" role="img" aria-label="Supply split"></div><ul class="legend" id="legend"></ul>
+          <h3 class="sum-h">Protections</h3><ul class="sum-list" id="sum-features"></ul>
+          <div class="fee-row"><div><span class="fee-label">Creation fee</span><span class="fee-note" id="fee-note">One time, per token</span></div><div class="fee-val"><strong>$1.00</strong><span id="fee-native">&asymp; &hellip;</span></div></div>
           <button class="btn btn-primary btn-block" type="button" id="launch-btn">Connect wallet to launch</button>
           <p class="sum-fine" id="sum-fine">Test mode: wallet sign-in is real. The fee payment and token creation are simulated until the contracts are deployed.</p>
         </div>
@@ -260,49 +99,15 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="index.html" aria-label="NXT PAD home">
-            <img src="assets/img/logo.png" alt="" width="46" height="46">
-            <span>NXT PAD</span>
-          </a>
-          <p>Launch on Sui, Solana, and Ethereum.</p>
-        </div>
-        <nav class="footer-links" aria-label="Footer">
-          <a href="index.html#features">Features</a>
-          <a href="index.html#networks">Networks</a>
-          <a href="index.html#how">How it works</a>
-          <a href="tokens.html">Launches</a>
-        </nav>
-      </div>
-      <p class="legal">&copy; <span data-year>2026</span> NXT PAD, part of NXT Cloud. Test networks only. Nothing on this site is financial, legal, or investment advice. Digital assets are volatile and carry risk.</p>
-    </div>
-  </footer>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="index.html" aria-label="NXT PAD home"><img src="assets/img/logo.png" alt="" width="46" height="46"><span>NXT PAD</span></a><p>Launch on Sui, Solana, and Ethereum.</p></div><nav class="footer-links" aria-label="Footer"><a href="index.html#features">Features</a><a href="index.html#networks">Networks</a><a href="index.html#how">How it works</a><a href="tokens.html">Launches</a></nav></div><p class="legal">&copy; <span data-year>2026</span> NXT PAD, part of NXT Cloud. Test networks only. Nothing on this site is financial, legal, or investment advice. Digital assets are volatile and carry risk.</p></div></footer>
 
-  <!-- Progress dialog -->
   <dialog class="modal" id="progress" aria-labelledby="pg-title">
-    <div class="modal-head">
-      <h2 id="pg-title">Launching</h2>
-      <button class="modal-x" type="button" id="pg-x" aria-label="Close" hidden>&times;</button>
-    </div>
+    <div class="modal-head"><h2 id="pg-title">Launching</h2><button class="modal-x" type="button" id="pg-x" aria-label="Close" hidden>&times;</button></div>
     <div class="modal-body">
-      <ol class="steps" id="pg-steps">
-        <li data-step="sign"><span class="st-ic"></span><div><strong>Wallet signed in</strong><span class="st-sub"></span></div></li>
-        <li data-step="fee"><span class="st-ic"></span><div><strong>Pay the $1.00 creation fee</strong><span class="st-sub"></span></div></li>
-        <li data-step="create"><span class="st-ic"></span><div><strong>Create the token</strong><span class="st-sub"></span></div></li>
-      </ol>
-      <div id="pg-result" class="pg-result" hidden></div>
-      <p class="modal-error" id="pg-error" role="alert" hidden></p>
-      <div class="modal-actions" id="pg-actions" hidden></div>
+      <ol class="steps" id="pg-steps"><li data-step="sign"><span class="st-ic"></span><div><strong>Wallet signed in</strong><span class="st-sub"></span></div></li><li data-step="fee"><span class="st-ic"></span><div><strong>Pay the $1.00 creation fee</strong><span class="st-sub"></span></div></li><li data-step="create"><span class="st-ic"></span><div><strong>Create the token</strong><span class="st-sub"></span></div></li></ol>
+      <div id="pg-result" class="pg-result" hidden></div><p class="modal-error" id="pg-error" role="alert" hidden></p><div class="modal-actions" id="pg-actions" hidden></div>
     </div>
   </dialog>
-
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/wallet.js"></script>
-  <script src="assets/js/chains.js"></script>
-  <script src="assets/js/launch.js"></script>
+  <script src="assets/js/config.js"></script><script src="assets/js/main.js"></script><script src="assets/js/wallet.js"></script><script src="assets/js/chains.js"></script><script src="assets/js/launch.js"></script>
 </body>
 </html>
