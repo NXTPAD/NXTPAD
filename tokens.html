@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Launches | NXT PAD</title>
+  <meta name="description" content="Tokens launched with NXT PAD on Ethereum Sepolia, Solana Devnet, and Sui Testnet.">
+  <meta name="theme-color" content="#020409">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="testbar" role="note"><i aria-hidden="true"></i>Test mode: Ethereum Sepolia, Solana Devnet, and Sui Testnet. Test coins have no value.</div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="NXT PAD home">
+        <img src="assets/img/logo.png" alt="" width="46" height="46">
+        <span>NXT PAD</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#networks">Networks</a>
+        <a href="index.html#how">How it works</a>
+        <a href="tokens.html" aria-current="page">Launches</a>
+        <button class="btn btn-ghost btn-sm" type="button" data-wallet-btn>Connect wallet</button>
+        <a class="btn btn-primary btn-sm" href="launch.html">Launch a token</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="doc-hero">
+      <div class="wrap">
+        <h1>Launches</h1>
+        <p>Tokens created with NXT PAD from this browser. Once the contracts are live, this page will read launches straight from the chains.</p>
+        <div class="doc-meta">
+          <span class="pill pill--dev">Test networks only</span>
+          <span id="count-meta"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap section-tight">
+      <div class="filter-row">
+        <div class="seg" id="filters" role="group" aria-label="Filter by network"></div>
+        <button class="btn btn-ghost btn-sm" type="button" id="clear-btn" hidden>Clear test data</button>
+      </div>
+      <div class="token-grid" id="token-grid"></div>
+      <div class="empty" id="empty" hidden>
+        <h2>No launches yet</h2>
+        <p>Create your first test token and it will show up here.</p>
+        <a class="btn btn-primary" href="launch.html">Launch a token</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="NXT PAD home">
+            <img src="assets/img/logo.png" alt="" width="46" height="46">
+            <span>NXT PAD</span>
+          </a>
+          <p>Launch on Sui, Solana, and Ethereum.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#networks">Networks</a>
+          <a href="index.html#how">How it works</a>
+          <a href="launch.html">Launch a token</a>
+        </nav>
+      </div>
+      <p class="legal">&copy; <span data-year>2026</span> NXT PAD, part of NXT Cloud. Test networks only. Nothing on this site is financial, legal, or investment advice. Digital assets are volatile and carry risk.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/wallet.js"></script>
+  <script src="assets/js/tokens.js"></script>
+</body>
+</html>
