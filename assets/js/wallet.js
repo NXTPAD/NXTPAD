@@ -69,7 +69,7 @@
       return arr;
     }
     var prefix = chainKey === 'solana' ? 'solana:' : 'sui:';
-    return standard
+    var result = standard
       .filter(function (w) {
         return w.chains && w.features && w.features['standard:connect'] &&
           w.chains.some(function (c) { return c.indexOf(prefix) === 0; });
@@ -77,6 +77,23 @@
       .map(function (w) {
         return { id: 'std:' + chainKey + ':' + w.name, name: w.name, icon: safeIcon(w.icon), kind: 'standard', wallet: w };
       });
+
+    // Phantom exposes a native Solana provider. Prefer it for Phantom so
+    // sign-in uses Phantom's own SIWS implementation instead of a wrapper.
+    if (chainKey === 'solana' && window.phantom && window.phantom.solana) {
+      var p = window.phantom.solana;
+      var phantomEntry = {
+        id: 'phantom:solana',
+        name: 'Phantom',
+        icon: '',
+        kind: 'phantom-solana',
+        provider: p
+      };
+      result = [phantomEntry].concat(result.filter(function (w) {
+        return String(w.name).toLowerCase() !== 'phantom';
+      }));
+    }
+    return result;
   }
 
   /* ------------------------------------------------------------------ helpers */
@@ -179,6 +196,12 @@
       address = accts[0];
       active = { kind: 'eip1193', provider: entry.provider, wallet: null, account: address, entryId: entry.id };
       bindEthEvents(entry.provider);
+    } else if (entry.kind === 'phantom-solana') {
+      var pRes = await entry.provider.connect();
+      var pPubkey = pRes && pRes.publicKey ? pRes.publicKey : entry.provider.publicKey;
+      if (!pPubkey) throw new Error('Phantom did not return a Solana account.');
+      address = typeof pPubkey === 'string' ? pPubkey : (pPubkey.toBase58 ? pPubkey.toBase58() : String(pPubkey));
+      active = { kind: 'phantom-solana', provider: entry.provider, wallet: null, account: null, entryId: entry.id };
     } else {
       var res = await entry.wallet.features['standard:connect'].connect();
       var list = (res && res.accounts && res.accounts.length) ? res.accounts : entry.wallet.accounts;
@@ -243,28 +266,38 @@
         params: ['0x' + toHex(bytes), state.address]
       });
     } else if (state.chain === 'solana') {
-      // Phantom and other modern Solana wallets support SIWS through the
-      // Wallet Standard. Use solana:signIn when available so the wallet
-      // constructs and validates the standardized message itself.
-      var sif = active.wallet.features['solana:signIn'];
-      if (sif) {
-        var siws = await sif.signIn({
-          domain: location.host,
-          address: state.address,
-          statement: 'Sign in to NXT PAD. This only proves you own this wallet. It is free and does not send a transaction.',
-          uri: location.origin,
-          version: '1',
-          chainId: 'devnet',
-          nonce: NXT.randomHex(8),
-          issuedAt: new Date().toISOString()
-        });
-        if (!siws || !siws.length || !siws[0].signature) throw new Error('The wallet did not return a Solana sign-in signature.');
-        signature = bytesToBase64(siws[0].signature);
+      var signInput = {
+        domain: location.host,
+        address: state.address,
+        statement: 'Sign in to NXT PAD. This only proves you own this wallet. It is free and does not send a transaction.',
+        uri: location.origin,
+        version: '1',
+        chainId: 'devnet',
+        nonce: NXT.randomHex(12),
+        issuedAt: new Date().toISOString()
+      };
+
+      if (active.kind === 'phantom-solana') {
+        if (!active.provider || typeof active.provider.signIn !== 'function') {
+          throw new Error('Phantom sign-in is unavailable. Please update Phantom and try again.');
+        }
+        var po = await active.provider.signIn(signInput);
+        var pout = Array.isArray(po) ? po[0] : po;
+        if (!pout || !pout.signature) throw new Error('Phantom did not return a Solana sign-in signature.');
+        signature = bytesToBase64(pout.signature);
       } else {
-        var sf = active.wallet.features['solana:signMessage'];
-        if (!sf) throw new Error(state.walletName + ' cannot sign messages on Solana.');
-        var out = await sf.signMessage({ account: active.account, message: bytes });
-        signature = bytesToBase64(out[0].signature);
+        var sif = active.wallet.features['solana:signIn'];
+        if (sif) {
+          var siws = await sif.signIn(signInput);
+          var sout = Array.isArray(siws) ? siws[0] : siws;
+          if (!sout || !sout.signature) throw new Error('The wallet did not return a Solana sign-in signature.');
+          signature = bytesToBase64(sout.signature);
+        } else {
+          var sf = active.wallet.features['solana:signMessage'];
+          if (!sf) throw new Error(state.walletName + ' cannot sign messages on Solana.');
+          var out = await sf.signMessage({ account: active.account, message: bytes });
+          signature = bytesToBase64(out[0].signature);
+        }
       }
     } else {
       var uf = active.wallet.features['sui:signPersonalMessage'];
