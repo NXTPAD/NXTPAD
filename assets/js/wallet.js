@@ -198,6 +198,26 @@
   function buildMessage() {
     var c = C.chains[state.chain];
     var nonce = NXT.randomHex(8);
+
+    // Ethereum wallets such as MetaMask recognize the SIWE (EIP-4361)
+    // format when the message identifies itself as an Ethereum sign-in.
+    // Keeping the required fields in their standard order prevents wallets
+    // from rejecting the request as malformed.
+    if (state.chain === 'ethereum') {
+      return [
+        location.host + ' wants you to sign in with your Ethereum account:',
+        state.address,
+        '',
+        'Sign in to NXT PAD. This only proves you own this wallet. It is free and does not send a transaction.',
+        '',
+        'URI: ' + location.origin,
+        'Version: 1',
+        'Chain ID: 11155111',
+        'Nonce: ' + nonce,
+        'Issued At: ' + new Date().toISOString()
+      ].join('\n');
+    }
+
     return [
       'NXT PAD wants you to sign in with your ' + c.name + ' account:',
       state.address,
