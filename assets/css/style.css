@@ -557,3 +557,14 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 [hidden] { display: none !important; }
 
 .card > .pill { align-self: flex-start; }
+
+
+/* Unified NXT cloud logo + animated orbital rings */
+.brand,.footer-brand .brand{position:relative;overflow:visible;isolation:isolate}
+.brand::before,.brand::after,.footer-brand .brand::before,.footer-brand .brand::after{content:"";position:absolute;left:26px;top:50%;border:1px solid rgba(30,155,255,.72);border-radius:50%;pointer-events:none;z-index:0;box-shadow:0 0 10px rgba(0,150,255,.32)}
+.brand::before,.footer-brand .brand::before{width:68px;height:24px;transform:translate(-50%,-50%) rotate(-18deg);animation:nxtPadLogoOrbit 7s linear infinite}
+.brand::after,.footer-brand .brand::after{width:60px;height:20px;transform:translate(-50%,-50%) rotate(24deg);animation:nxtPadLogoOrbitReverse 9s linear infinite}
+.brand img,.brand span{position:relative;z-index:2}
+@keyframes nxtPadLogoOrbit{to{transform:translate(-50%,-50%) rotate(342deg)}}
+@keyframes nxtPadLogoOrbitReverse{to{transform:translate(-50%,-50%) rotate(-336deg)}}
+@media(prefers-reduced-motion:reduce){.brand::before,.brand::after,.footer-brand .brand::before,.footer-brand .brand::after{animation:none}}
