@@ -280,7 +280,7 @@
         if (typeof sf.signMessage !== 'function') {
           throw new Error('Phantom message signing is unavailable. Please update Phantom and try again.');
         }
-        out = await sf.signMessage(bytes);
+        out = await sf.signMessage(bytes, 'utf8');
         if (!out || !out.signature) throw new Error('Phantom did not return a Solana signature.');
         signature = bytesToBase64(out.signature);
       } else {
