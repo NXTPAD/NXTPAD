@@ -78,6 +78,12 @@
       supply: supply,
       description: $('f-desc').value.trim(),
       logo: $('f-logo').value.trim(),
+      social: {
+        website: $('f-website').value.trim(),
+        x: $('f-x').value.trim(),
+        telegram: $('f-telegram').value.trim(),
+        discord: $('f-discord').value.trim()
+      },
       creator: {
         enabled: toggleOn('sw-creator'),
         pct: Number($('f-creator-pct').value),
@@ -109,6 +115,14 @@
     if (!isFinite(v.supply)) errs.supply = 'Enter a whole number.';
     else if (v.supply < C.limits.minSupply) errs.supply = 'Minimum supply is ' + NXT.formatNumber(C.limits.minSupply) + '.';
     else if (v.supply > C.limits.maxSupply) errs.supply = 'Maximum supply is ' + NXT.formatNumber(C.limits.maxSupply) + '.';
+
+    ['website', 'x', 'telegram', 'discord'].forEach(function (key) {
+      if (v.social[key]) {
+        var okSocial = false;
+        try { okSocial = new URL(v.social[key]).protocol === 'https:'; } catch (e) { okSocial = false; }
+        if (!okSocial) errs[key] = 'Use a full https:// link.';
+      }
+    });
 
     if (v.logo) {
       var ok = false;
@@ -256,7 +270,7 @@
       chain: v.chain,
       network: C.chains[v.chain].network,
       name: v.name, symbol: v.symbol, supply: v.supply,
-      description: v.description, logo: v.logo,
+      description: v.description, logo: v.logo, social: v.social,
       creatorAddress: NXT.wallet.state.address,
       creator: v.creator, antiSnipe: v.antiSnipe,
       early: { enabled: v.early.enabled, reservePct: v.early.reservePct, windowMin: v.early.windowMin, wallets: v.early.allowlist.length },
