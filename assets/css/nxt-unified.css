@@ -1,0 +1,16 @@
+/* NXT Unified Ecosystem Theme — shared visual language */
+:root{--nxt-black:#020409;--nxt-ink:#060c15;--nxt-navy:#0b1626;--nxt-navy2:#102038;--nxt-line:#16283d;--nxt-line2:#24405c;--nxt-sky:#89cff0;--nxt-mist:#dcf1fc;--nxt-muted:#93a8bb;--nxt-blue:#1e9bff}
+html{scroll-behavior:smooth}
+body{background:var(--nxt-black);color:var(--nxt-mist)}
+.site-header{background:rgba(2,4,9,.84);border-bottom-color:var(--nxt-line);backdrop-filter:blur(18px)}
+.nav{gap:1.15rem}
+.nav a{color:var(--nxt-muted);font-weight:600}
+.nav a:hover,.nav a[aria-current=page]{color:var(--nxt-sky)}
+.card,.panel{border-color:var(--nxt-line2);background:linear-gradient(145deg,rgba(11,22,38,.94),rgba(6,12,21,.96))}
+.btn{border-radius:12px}
+.btn-primary{background:var(--nxt-sky);color:#04121c;box-shadow:0 0 24px rgba(30,155,255,.16)}
+.btn-primary:hover{background:#dcf1fc}
+.btn-ghost{border-color:var(--nxt-line2);background:rgba(6,12,21,.5)}
+input,textarea,select{border-color:var(--nxt-line2)}
+.site-footer{border-top-color:var(--nxt-line)}
+@media(max-width:960px){.nav{background:rgba(2,4,9,.98)}}
