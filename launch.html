@@ -51,24 +51,21 @@
           <div class="field"><label for="f-supply">Total supply</label><input id="f-supply" name="supply" type="text" inputmode="numeric" value="1,000,000,000" required><p class="hint" id="supply-hint"></p><p class="err" data-err="supply"></p></div>
           <div class="field"><label for="f-desc">Description <span class="opt">optional</span></label><textarea id="f-desc" name="desc" rows="3" maxlength="280" placeholder="What is this token about?"></textarea><p class="hint"><span id="desc-count">0</span> / 280</p></div>
           <div class="field"><label for="f-logo">Logo URL <span class="opt">optional</span></label><input id="f-logo" name="logo" type="url" placeholder="https://example.com/logo.png"><p class="err" data-err="logo"></p></div>
-        </section>
 
-        <!-- 3. Social links -->
-        <section class="panel">
-          <div class="panel-head">
-            <div><h2><span class="num">3</span>Social links</h2><p>Optional links people can use to find your project and community.</p></div>
-          </div>
-          <div class="grid-2">
-            <div class="field"><label for="f-website">Website <span class="opt">optional</span></label><input id="f-website" name="website" type="url" placeholder="https://yourproject.com"><p class="err" data-err="website"></p></div>
-            <div class="field"><label for="f-x">X / Twitter <span class="opt">optional</span></label><input id="f-x" name="x" type="url" placeholder="https://x.com/yourproject"><p class="err" data-err="x"></p></div>
-            <div class="field"><label for="f-telegram">Telegram <span class="opt">optional</span></label><input id="f-telegram" name="telegram" type="url" placeholder="https://t.me/yourproject"><p class="err" data-err="telegram"></p></div>
-            <div class="field"><label for="f-discord">Discord <span class="opt">optional</span></label><input id="f-discord" name="discord" type="url" placeholder="https://discord.gg/yourinvite"><p class="err" data-err="discord"></p></div>
+          <div class="social-fields">
+            <div class="panel-head"><div><h3>Social links <span class="opt">optional</span></h3><p>Add the official places people can find your project.</p></div></div>
+            <div class="grid-2">
+              <div class="field"><label for="f-website">Website</label><input id="f-website" name="website" type="url" placeholder="https://yourproject.com"><p class="err" data-err="website"></p></div>
+              <div class="field"><label for="f-x">X / Twitter</label><input id="f-x" name="x" type="url" placeholder="https://x.com/yourproject"><p class="err" data-err="x"></p></div>
+              <div class="field"><label for="f-telegram">Telegram</label><input id="f-telegram" name="telegram" type="url" placeholder="https://t.me/yourproject"><p class="err" data-err="telegram"></p></div>
+              <div class="field"><label for="f-discord">Discord</label><input id="f-discord" name="discord" type="url" placeholder="https://discord.gg/yourinvite"><p class="err" data-err="discord"></p></div>
+            </div>
           </div>
         </section>
 
         <!-- 4. Anti-sniping -->
         <section class="panel" id="panel-snipe">
-          <div class="panel-head"><div><h2><span class="num">4</span>Anti-sniping</h2><p>Slow down bots in the first minutes so real people get a fair start.</p></div><label class="switch"><input type="checkbox" id="sw-snipe" checked><span class="track" aria-hidden="true"></span><span class="sr">Enable anti-sniping</span></label></div>
+          <div class="panel-head"><div><h2><span class="num">3</span>Anti-sniping</h2><p>Slow down bots in the first minutes so real people get a fair start.</p></div><label class="switch"><input type="checkbox" id="sw-snipe" checked><span class="track" aria-hidden="true"></span><span class="sr">Enable anti-sniping</span></label></div>
           <div class="panel-body" data-for="sw-snipe"><div class="grid-3">
             <div class="field"><label for="f-snipe-window">Protection window</label><select id="f-snipe-window"><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select></div>
             <div class="field"><label for="f-snipe-max">Max buy per wallet</label><select id="f-snipe-max"><option value="0.5">0.5% of supply</option><option value="1" selected>1% of supply</option><option value="2">2% of supply</option><option value="3">3% of supply</option><option value="5">5% of supply</option></select></div>
@@ -78,13 +75,13 @@
 
         <!-- 5. Creator allocation -->
         <section class="panel" id="panel-creator">
-          <div class="panel-head"><div><h2><span class="num">5</span>Creator allocation</h2><p>Reserve part of the supply for yourself, with an optional lock so the community can see you are staying.</p></div><label class="switch"><input type="checkbox" id="sw-creator"><span class="track" aria-hidden="true"></span><span class="sr">Enable creator allocation</span></label></div>
+          <div class="panel-head"><div><h2><span class="num">4</span>Creator allocation</h2><p>Reserve part of the supply for yourself, with an optional lock so the community can see you are staying.</p></div><label class="switch"><input type="checkbox" id="sw-creator"><span class="track" aria-hidden="true"></span><span class="sr">Enable creator allocation</span></label></div>
           <div class="panel-body is-off" data-for="sw-creator"><div class="field"><label for="f-creator-pct">Your share: <output id="o-creator-pct">5%</output></label><input id="f-creator-pct" type="range" min="1" max="20" step="1" value="5"><p class="hint" id="creator-amt"></p></div><div class="field"><label for="f-creator-vest">Lock period</label><select id="f-creator-vest"><option value="0">No lock</option><option value="30">30 days</option><option value="90" selected>90 days</option><option value="180">180 days</option><option value="365">365 days</option></select></div></div>
         </section>
 
         <!-- 6. Early buy-in -->
         <section class="panel" id="panel-early">
-          <div class="panel-head"><div><h2><span class="num">6</span>Early buy-in</h2><p>Let a chosen list of wallets buy first, before public trading opens.</p></div><label class="switch"><input type="checkbox" id="sw-early"><span class="track" aria-hidden="true"></span><span class="sr">Enable early buy-in</span></label></div>
+          <div class="panel-head"><div><h2><span class="num">5</span>Early buy-in</h2><p>Let a chosen list of wallets buy first, before public trading opens.</p></div><label class="switch"><input type="checkbox" id="sw-early"><span class="track" aria-hidden="true"></span><span class="sr">Enable early buy-in</span></label></div>
           <div class="panel-body is-off" data-for="sw-early"><div class="grid-2">
             <div class="field"><label for="f-early-pct">Reserved supply: <output id="o-early-pct">3%</output></label><input id="f-early-pct" type="range" min="1" max="10" step="1" value="3"><p class="hint" id="early-amt"></p></div>
             <div class="field"><label for="f-early-window">Early window</label><select id="f-early-window"><option value="5">5 minutes</option><option value="15" selected>15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select><p class="hint">Public trading opens after this window ends.</p></div>
